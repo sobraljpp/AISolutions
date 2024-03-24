@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Login({walletAddress, error, requestAccount}) {
+export default function Login() {
+  const navigate = useNavigate();
 
   return ( 
     <div className="App">
       <header className="App-header">
-        {walletAddress ? (
+        {true ? (
           <div>
             <h3>Wallet conectada!</h3>
             <Link to="/Home"> <h4>Entrar</h4> </Link>
@@ -15,8 +15,8 @@ export default function Login({walletAddress, error, requestAccount}) {
         ) : (
           <div>
             <h3>Login:</h3>
-            <button onClick={requestAccount}>Conecte sua Wallet</button>
-            {error && <p>{error}</p>}
+            <button onClick={() => navigate('/')}>Conecte sua Wallet</button>
+            {true && <p>{"Cavalo"}</p>}
           </div>
         )}
       </header>

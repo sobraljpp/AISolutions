@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 // Importing the logo image
 
 // Defining the Header component responsible for rendering the header section of the application
-export default function Header({walletAddress, requestAccount}) {
+export default function Header() {
     // Using the `useNavigate` hook to get the navigate function for routing
     const navigate = useNavigate();
 
@@ -38,9 +38,9 @@ export default function Header({walletAddress, requestAccount}) {
                         <li>
                             <button className="bg-blue-600 w-[150px] py-2 rounded-lg hover:text-gray-300"
                                 // Navigate to the About page when the button is clicked
-                                onClick={requestAccount}
+                                onClick={() => navigate('/')}
                             >
-                                {!walletAddress ? 
+                                {false ? 
                                 <p>Connect Wallet</p>
                                 :
                                 <p>Connected</p>

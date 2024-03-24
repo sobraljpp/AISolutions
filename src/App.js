@@ -2,34 +2,17 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Layout from './pages/Layout';
-import { useState } from "react";
+import { setupWalletSelector } from "@near-wallet-selector/core";
+import { setupModal } from "@near-wallet-selector/modal-ui";
+import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 
 function App() {
-
-  const [walletAddress, setWalletAddress] = useState("");
-  const [error, setError] = useState("");
-
-
-  async function requestAccount() {
-    if (window.ethereum) {
-      try {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setWalletAddress(accounts[0]); 
-        console.log(accounts[0]);
-        setError(""); 
-      } catch (error) {
-        setError("Não foi possível conectar à carteira MetaMask. Por favor, verifique se ela está instalada e desbloqueada.");
-      }
-    } else {
-      setError("Não há MetaMask disponível.");
-    }
-  }
 
     return (
         <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Layout walletAddress={walletAddress} requestAccount={requestAccount} />} >
-                  <Route path="/" element={<Login walletAddress={walletAddress} error={error} requestAccount={requestAccount} />}></Route>
+              <Route path="/" element={<Layout />} >
+                  <Route path="/" element={<Login />}></Route>
                   <Route path="/Home" element={<Home />}></Route>
                 </Route>
             </Routes>
